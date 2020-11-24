@@ -1,14 +1,17 @@
 pipeline{
 
     agent any
-
+    tools {
+        maven 'Apache Maven 3.6.3'
+        jdk 'JDK8'
+    }
     stages {
 
         stage ('Compile Stage') {
 
             steps {
 
-                withMaven(maven: 'maven_3_6_3') {
+                script {
                     sh 'mvn clean install'
 
                 }
@@ -19,7 +22,7 @@ pipeline{
 
             steps {
 
-                withMaven(maven: 'maven_3_5_0') {
+                script {
                     sh 'mvn test'
 
                 }
